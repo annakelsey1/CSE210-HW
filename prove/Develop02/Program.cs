@@ -8,6 +8,11 @@ using System;
 
 //Provide a menu that allows the user choose these options
 
+//In addition, your program must:
+//Contain classes for the major components in the program.
+//Contain at least two classes in addition to the Program class.
+//Demonstrate the principle of abstraction by using member variables and methods appropriately.
+
 class Program
 {
     static void Main(string[] args)
