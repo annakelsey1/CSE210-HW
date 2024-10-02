@@ -29,29 +29,34 @@ class Program
             Console.WriteLine("5. Quit");
             Console.WriteLine("What would you like to do? ");
             int answer = int.Parse(Console.ReadLine());
-
-            // Handling user input with switch statement
+            Console.WriteLine();
+            
             switch (answer)
             {
                 case 1:
-                    Console.WriteLine("Write selected.");
-                    // Add logic to write an entry
+                    journal.NewEntry();
+                    Console.WriteLine();
                     break;
                 case 2:
-                    Console.WriteLine("Display selected.");
-                    // Add logic to display entries
+                    journal.DisplayEntry();
+                    Console.WriteLine();
                     break;
                 case 3:
-                    Console.WriteLine("Load selected.");
-                    // Add logic to load entries
+                    Console.Write("Enter the file you want to load: ");
+                    string loadFileName = Console.ReadLine();
+                    journal.LoadEntries(loadFileName);
+                    Console.WriteLine();
                     break;
                 case 4:
-                    Console.WriteLine("Save selected.");
-                    // Add logic to save entries
+                    Console.Write("Enter the name of the file you want to save: ");
+                    string saveFileName = Console.ReadLine();
+                    journal.SaveEntries(saveFileName);
+                    Console.WriteLine("Your entry was saved.");
+                    Console.WriteLine();
                     break;
                 case 5:
-                    Console.WriteLine("Quit selected.");
-                    running = false;  // Exit the loop
+                    Console.WriteLine("Quitting. Thank you for writing today!");
+                    running = false; 
                     break;
                 default:
                     Console.WriteLine("Sorry, that's not an option. Please type a number between 1 and 5.");
