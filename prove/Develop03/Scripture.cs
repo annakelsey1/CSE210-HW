@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 // Scripture: Keeps track of both the reference and the text of the scripture. 
 // Can hide words and get the rendered display of the text.
@@ -11,59 +13,89 @@ using System;
 
 public class Scripture
 {
-    private Reference _reference = new Reference();
-    private List<Word> _word = new List<Word> {};
+    private Reference _reference;
+    private List<Word> _words = new List<Word>();
     private int hiddenWords = 0;
 
+    // Constructor with List<string>
     public Scripture(Reference reference, List<string> words)
-   {
-    this._reference = reference;
-    // Converte WordList into a Object Word 
-    foreach(string word in words)
     {
-        Word aWord = new Word();
-        aWord.SetWord(word);
-        _word.Add(aWord);
-    }
-   }
+        this._reference = reference;
 
-   public Word(string word)
-    {
-        this._word = word;
-        this._hidden = false;
+        foreach (string word in words)
+        {
+            Word aWord = new Word(word);
+            _words.Add(aWord);
+        }
     }
 
-    public Word(string word, bool hidden)
+    // Constructor with List<Word>
+    public Scripture(Reference reference, List<Word> words)
     {
-        this._word = word;
-        this._hidden = hidden;
+        this._reference = reference;
+        this._words = words;
     }
 
-    public void SetWord(string word)
+    // Returns the Scripture string with hidden words as underscores
+    public string GetScripture()
     {
-        this._word = word;
+        string reference = _reference.GetReference();
+        StringBuilder wordsBuilder = new StringBuilder();
+
+        foreach (Word aWord in _words)
+        {
+            if (aWord.IsHidden())
+            {
+                wordsBuilder.Append(" ").Append(new string('_', aWord.GetWord().Length));
+            }
+            else
+            {
+                wordsBuilder.Append(" ").Append(aWord.GetWord());
+            }
+        }
+
+        return $"{reference} {wordsBuilder.ToString().Trim()}";
     }
 
-    public string GetWord()
+    // Sets scripture by splitting a string into words and converting to Word objects
+    public void SetScripture(Reference reference, string words) 
     {
-        return _word;
-    }
-    
-    public bool IsHidden()
-    {
-        return _hidden;
+        this._reference = reference;
+        List<string> scriptureList = words.Split(' ').ToList();
+        
+        _words.Clear();  // Clear existing words
+        foreach (string word in scriptureList)
+        {
+            Word aWord = new Word(word);
+            _words.Add(aWord);
+        }
     }
 
-    public void HideWord()
+    // Hides a random word, ensuring no infinite recursion
+    public void HideRandomWord()
     {
-        this._hidden = true;
+        if (hiddenWords == _words.Count)
+        {
+            Console.Clear();
+            Console.WriteLine(GetScripture());
+            Environment.Exit(0);  // Exit if all words are hidden
+        }
+
+        Random rnd = new Random();
+        int randomIndex = rnd.Next(0, _words.Count);
+
+        if (!_words[randomIndex].IsHidden())
+        {
+            _words[randomIndex].HideWord();
+            hiddenWords += 1;
+            Console.WriteLine(hiddenWords);
+        }
+        else
+        {
+            HideRandomWord();  // Recursive call to hide another word
+        }
     }
-    
-    public void ShowWord()
-    {
-        this._hidden = false;
-    }
-    
 }
+
 
 
