@@ -25,19 +25,19 @@ public class Activity
 {
     protected string _startMessage = "";  
     protected string _endingMessage = "";
-    protected string _name = "";
     protected string _description = "";
     protected string _duration = "";
 
 
-    public Activity(string startMessage, string endingMessage, string name, string description, string duration)
+    public Activity(string startMessage, string endingMessage, string description, string duration)
     {
         _startMessage = startMessage;
         _endingMessage = endingMessage;
-        _name = name;
         _description = description;
         _duration = duration;
     }
+
+
 
     public void DisplayStartingMessage()
     {

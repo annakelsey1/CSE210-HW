@@ -17,8 +17,8 @@ public class ListingActivity : Activity
     protected int _count;
     protected List<string> _prompts = new List<string>();
 
-    public ListingActivity(int count, List<string> prompts, string startMessage, string endingMessage, string name, string description, string duration)
-        : base(startMessage, endingMessage, name, description, duration)
+    public ListingActivity(int count, List<string> prompts, string startMessage, string endingMessage, string description, string duration)
+        : base(startMessage, endingMessage, description, duration)
     {
         this._count = count;
         this._prompts = prompts;

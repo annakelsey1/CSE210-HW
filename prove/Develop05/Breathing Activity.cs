@@ -6,8 +6,9 @@ using System;
 
 public class BreathingActivity : Activity
 {
-    public BreathingActivity(string startMessage, string endingMessage, string name, string description, string duration) : base(startMessage, endingMessage, name, description, duration)
+    public BreathingActivity(string startMessage, string endingMessage, string description, string duration) : base("Welcome to the Breathing Activity.", "Well done! You have completed the Breathing Activity.", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.", duration)
     {
+
     }
 
     
