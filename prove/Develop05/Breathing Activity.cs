@@ -6,10 +6,12 @@ using System;
 
 public class BreathingActivity : Activity
 {
-    public BreathingActivity() 
-        : base("Welcome to the Breathing Activity.", "Well done! You have completed the Breathing Activity.", "Breathing Activity", "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.")
+    public BreathingActivity(string duration) 
+        : base("Welcome to the Breathing Activity.", 
+               "Well done! You have completed the Breathing Activity.", 
+               "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.",
+               duration) // Pass the duration to the base constructor
     {
-        
     }
 
     public void Run()
@@ -44,5 +46,6 @@ public class BreathingActivity : Activity
         DisplayEndingMessage();
     }
 }
+
 
 

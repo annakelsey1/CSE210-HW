@@ -33,23 +33,30 @@ class Program
             switch (choice)
             {
                 case "1":
-                    activity.PauseWithSpinner(3); // Pause for 3 seconds with spinner
-                    BreathingActivity breathing = new BreathingActivity(/* parameters */);
+                    BreathingActivity breathing = new BreathingActivity("60");
                     breathing.Run();
                     break;
+
+
                 case "2":
-                    activity.PauseWithSpinner(3); // Pause for 3 seconds with spinner
-                    ReflectingActivity reflecting = new ReflectingActivity(/* parameters */);
+                    ReflectionActivity reflecting = new ReflectionActivity("60");
                     reflecting.Run();
                     break;
+
                 case "3":
-                    activity.PauseWithSpinner(3); // Pause for 3 seconds with spinner
-                    ListingActivity listing = new ListingActivity(/* parameters */);
+                    List<string> prompts = new List<string>
+                    {
+                        "List things you're grateful for.",
+                        "List things that make you happy."
+                    };
+                    ListingActivity listing = new ListingActivity(prompts.Count, prompts, "60");
                     listing.Run();
                     break;
+
                 case "4":
                     quit = true;
                     break;
+
                 default:
                     Console.WriteLine("Invalid choice. Please select a valid option.");
                     break;

@@ -53,9 +53,9 @@ public class ReflectionActivity : Activity
     };
 
     public ReflectionActivity(string duration)
-        : base("Welcome to the Reflection Activity.", 
-               "Well done! You have completed the Reflection Activity.", 
-               "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.", 
+        : base("Welcome to the Reflection Activity.",
+               "Well done! You have completed the Reflection Activity.",
+               "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.",
                duration)
     {
     }
@@ -113,11 +113,15 @@ public class ReflectionActivity : Activity
             while (DateTime.Now < endTime)
             {
                 DisplayQuestion();
-
                 PauseWithCountdown(5);
             }
 
-            DisplayEndingMessage();
+            Console.WriteLine("\nHow did you feel when it was complete?");
+            PauseWithSpinner(10);
+
+            Console.WriteLine("\nWhat is your favorite thing about this experience?");
+            PauseWithSpinner(10);
+
         }
         else
         {
@@ -125,3 +129,4 @@ public class ReflectionActivity : Activity
         }
     }
 }
+

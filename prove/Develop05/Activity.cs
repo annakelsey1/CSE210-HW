@@ -51,7 +51,6 @@ public class Activity
 
     public void PauseWithSpinner(int seconds)
     {
-        Console.WriteLine("Pausing with a spinner...");
         char[] spinnerChars = new char[] { '|', '/', '-', '\\' };
         DateTime endTime = DateTime.Now.AddSeconds(seconds);
 
@@ -69,7 +68,6 @@ public class Activity
 
     public void PauseWithCountdown(int seconds)
     {
-        Console.WriteLine("Pausing with countdown...");
         for (int i = seconds; i >= 0; i--)
         {
             Console.Write($"\rCountdown: {i} seconds remaining");
