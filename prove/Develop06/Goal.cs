@@ -17,16 +17,12 @@ using System;
 // GetStringRepresentation - This method should provide all of the details of a goal in a way 
 // that is easy to save to a file, and then load later.
 
-public class Goal
+public abstract class Goal
 {
-    // RecordEvent() : void (Abstract)
-    // IsComplete() : bool (Abstract)
-    // GetDetailsString() : string
-    // GetStringRepresentation() : string (Abstract)
-
-    protected string _shortName = "";
-    protected string _description = "";
-    protected int _points = 0;
+    protected string _shortName;
+    protected string _description;
+    protected int _points;
+    protected bool _isComplete = false;
 
     public Goal(string shortName, string description, int points)
     {
@@ -34,4 +30,20 @@ public class Goal
         _description = description;
         _points = points;
     }
+
+    public int Points
+    {
+        get { return _points; }
+    }
+
+    public abstract bool IsComplete();
+    public abstract void RecordEvent();
+    public abstract string GetStringRepresentation();
+
+    public virtual string GetDetailsString()
+    {
+        return $"{_shortName}: {_description} ({_points} points)";
+    }
 }
+
+

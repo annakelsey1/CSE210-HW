@@ -18,17 +18,36 @@ using System;
 
 public class ChecklistGoal : Goal
 {
-    // RecordEvent() : void (Override)
-    // IsComplete() : bool (Override)
-    // GetDetailsString() : string (Override)
-    // GetStringRepresentation() : string (Override)
+    private int _amountCompleted = 0;
+    private int _target;
+    private int _bonus;
 
-    protected int _amountCompleted = 0;
-    protected int _target = 0;
-    protected int _bonus = 0;
-
-    public ChecklistGoal(int target, int bonus) : Goal()
+    public ChecklistGoal(string shortName, string description, int points, int target, int bonus) 
+        : base(shortName, description, points)
     {
-        // stuff?
+        _target = target;
+        _bonus = bonus;
+    }
+
+    public override bool IsComplete()
+    {
+        return _amountCompleted >= _target;
+    }
+
+    public override void RecordEvent()
+    {
+        _amountCompleted++;
+    }
+
+    public override string GetStringRepresentation()
+    {
+    return $"ChecklistGoal|{_shortName}|{_description}|{_points}|{_amountCompleted}|{_target}|{_bonus}";
+    }
+
+
+    public string GetProgress()
+    {
+        return $" -- Currently completed {_amountCompleted}/{_target}";
     }
 }
+

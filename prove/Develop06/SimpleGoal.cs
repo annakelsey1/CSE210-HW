@@ -19,14 +19,26 @@ using System;
 
 public class SimpleGoal : Goal
 {
-    // RecordEvent() : void (Override)
-    // IsComplete() : bool (Override)
-    // GetStringRepresentation() : string (Override)
+    protected bool _isComplete = false;
 
-    protected bool _isComplete = 0
-
-    public SimpleGoal() : Goal()
+    public SimpleGoal(string shortName, string description, int points) 
+        : base(shortName, description, points)
     {
-        // stuff here?
     }
+
+    public override void RecordEvent()
+    {
+        _isComplete = true;
+    }
+
+    public override bool IsComplete()
+    {
+        return _isComplete;
+    }
+
+    public override string GetStringRepresentation()
+    {
+    return $"SimpleGoal|{_shortName}|{_description}|{_points}|{_isComplete}";
+    }
+
 }
