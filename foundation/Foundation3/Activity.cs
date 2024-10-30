@@ -11,8 +11,8 @@ using System;
 
 public class Activity
 {
-    protected int _length;  // Length of the activity in minutes
-    protected int _distance; // Distance covered in meters
+    protected int _length;
+    protected int _distance;
 
     public Activity(int length, int distance)
     {
@@ -20,7 +20,7 @@ public class Activity
         _distance = distance;
     }
 
-    public int Length => _length; // Property to get the length
+    public int Length => _length;
 
     public virtual double GetDistance()
     {
@@ -29,11 +29,11 @@ public class Activity
 
     public virtual double GetSpeed()
     {
-        return 0; // Default implementation, override in derived classes
+        return 0;
     }
 
     public virtual double GetPace()
     {
-        return 0; // Default implementation, override in derived classes
+        return 0;
     }
 }
